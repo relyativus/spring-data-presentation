@@ -1,0 +1,7 @@
+
+<dataset>
+    <simple_users id="1" first_name="Jimmy" last_name="Page"></simple_users>
+    <simple_users id="2" first_name="Kurt" last_name="Kobain"></simple_users>
+    <simple_users id="3" first_name="Jimmy" last_name="Hendrix"></simple_users>
+    <simple_users id="4" first_name="James" last_name="Hetfield"></simple_users>
+</dataset>

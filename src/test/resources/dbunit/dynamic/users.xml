@@ -1,0 +1,7 @@
+<dataset>
+    <simple_users id="1" first_name="Ivo" last_name="Bobul"/>
+    <simple_users id="2" first_name="Stephan" last_name="Giga"/>
+    <simple_users id="3" first_name="Oksana" last_name="Bilozir"/>
+
+    <orders/>
+</dataset>
