@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author anatolii vakaliuk
  */
-@NamedQuery(name = "findById", query = "SELECT u FROM SimpleUser u where u.id = :userId")
+@NamedQuery(name = "findById", query = "select u from SimpleUser u where u.id=:userId")
 @Entity
 @Table(name = "simple_users")
 @Getter

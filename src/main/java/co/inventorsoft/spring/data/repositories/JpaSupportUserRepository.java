@@ -12,10 +12,9 @@ import org.springframework.data.repository.query.Param;
 public interface JpaSupportUserRepository extends JpaRepository<SimpleUser, Long> {
 
     @Query(name = "findById")
-    SimpleUser executeNamedQuery(@Param("userId") Long userId);
+    SimpleUser executeNamedQuery(@Param("userId") long id);
 
-    @EntityGraph(value = "userWithOrders", type = EntityGraph.EntityGraphType.FETCH, attributePaths = "orders")
-    @Query("select u from SimpleUser u where u.id = :userId")
-    SimpleUser findUserWithOrders(@Param("userId") Long id);
-
+    @EntityGraph(attributePaths = "orders")
+    @Query("select su from SimpleUser su where su.id = :userId")
+    SimpleUser findUserWithOrders(@Param("userId") long id);
 }

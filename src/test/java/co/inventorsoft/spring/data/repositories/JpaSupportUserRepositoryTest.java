@@ -9,14 +9,10 @@ import co.inventorsoft.spring.data.DAOTest;
 import co.inventorsoft.spring.data.model.SimpleUser;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
-import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.persistence.EntityManager;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -62,9 +58,4 @@ public class JpaSupportUserRepositoryTest {
         assertEquals(SimpleUser.class, userReference.getClass());
     }
 
-    @Test
-    @ExpectedDatabase(value = "classpath:dbunit/jpa/hintExpected.xml")
-    public void testUpdateUserFirstNameToTestQueryHintFlushes() {
-        final int affectedUsersCount = jpaSupportUserRepository.updateUserFirstNameToTest(1L);
-    }
 }
