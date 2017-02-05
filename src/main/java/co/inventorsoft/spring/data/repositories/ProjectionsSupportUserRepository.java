@@ -5,8 +5,10 @@
  */
 package co.inventorsoft.spring.data.repositories;
 
-import co.inventorsoft.spring.data.model.OrderInfo;
+import co.inventorsoft.spring.data.model.UserInfo;
 import co.inventorsoft.spring.data.model.SimpleUser;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +20,9 @@ import java.util.List;
  */
 public interface ProjectionsSupportUserRepository extends CrudRepository<SimpleUser, Long> {
 
-    @Query("select u from SimpleUser u where u.id = :userId")
-    List<OrderInfo> findById(@Param("userId") Long id);
+    @Query("select u.id as id, u.firstName as firstName, u.lastName as lastName from SimpleUser u where u.id = :userId")
+    List<UserInfo> findById(@Param("userId") Long id);
+
+    @Query("select u.id as id, u.firstName as firstName, u.lastName as lastName from SimpleUser u")
+    Page<UserInfo> findOrderInfos(final Pageable pageable);
 }

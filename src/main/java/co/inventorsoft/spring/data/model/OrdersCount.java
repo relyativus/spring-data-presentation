@@ -10,13 +10,8 @@ package co.inventorsoft.spring.data.model;
  */
 public interface OrdersCount {
 
-//    @Value("#{target.firstName}")
-
-
-//    @Value("#{target.ordersCount}")
     Long getOrdersCount();
 
-//    @Value("#{target.firstName}")
     String getName();
 
     Long getId();

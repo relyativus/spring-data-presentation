@@ -6,11 +6,13 @@
 package co.inventorsoft.spring.data.repositories;
 
 import co.inventorsoft.spring.data.DAOTest;
-import co.inventorsoft.spring.data.model.OrderInfo;
+import co.inventorsoft.spring.data.model.UserInfo;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -31,10 +33,17 @@ public class ProjectionsSupportUserRepositoryTest {
 
     @Test
     public void testFindByIdWithOpenedProjection() {
-        final List<OrderInfo> orderInfos = projectionsSupportUserRepository.findById(1L);
-        assertFalse(orderInfos.isEmpty());
-        final OrderInfo orderInfo = orderInfos.get(0);
-        assertEquals((long)orderInfo.getId(), 1L);
-        assertEquals("Ivo Bobul", orderInfo.getFullName());
+        final List<UserInfo> userInfos = projectionsSupportUserRepository.findById(1L);
+        assertFalse(userInfos.isEmpty());
+        final UserInfo userInfo = userInfos.get(0);
+        assertEquals((long) userInfo.getId(), 1L);
+        assertEquals("Ivo Bobul", userInfo.getFullName());
+    }
+
+    @Test
+    public void testFindUserInfosDoesNotFailsWithPageable() {
+        final Page<UserInfo> userInfos = projectionsSupportUserRepository.findOrderInfos(new PageRequest(0, 3));
+        assertEquals(3, userInfos.getTotalElements());
+        assertEquals(3, userInfos.getNumberOfElements());
     }
 }

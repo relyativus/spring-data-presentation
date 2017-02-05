@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 /**
  * @author anatolii
  */
-public interface OrderInfo {
+public interface UserInfo {
 
     Long getId();
 
