@@ -7,6 +7,7 @@ package co.inventorsoft.spring.data.repositories;
 
 import co.inventorsoft.spring.data.DAOTest;
 import co.inventorsoft.spring.data.model.UserInfo;
+import co.inventorsoft.spring.data.model.UserInfoDTO;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author anatolii
@@ -42,8 +44,31 @@ public class ProjectionsSupportUserRepositoryTest {
 
     @Test
     public void testFindUserInfosDoesNotFailsWithPageable() {
-        final Page<UserInfo> userInfos = projectionsSupportUserRepository.findOrderInfos(new PageRequest(0, 3));
+        final Page<UserInfo> userInfos = projectionsSupportUserRepository.findUserInfos(new PageRequest(0, 3));
         assertEquals(3, userInfos.getTotalElements());
         assertEquals(3, userInfos.getNumberOfElements());
     }
+
+    @Test
+    public void testFindByIdReturnsResultAsClassPassedThroughParameter() {
+        UserInfo userDto = projectionsSupportUserRepository.findById(1L, UserInfo.class);
+        assertNotNull(userDto);
+        assertEquals(1L, (long) userDto.getId());
+        assertEquals("Ivo Bobul", userDto.getFullName());
+
+        UserInfoDTO userInfoDTO = projectionsSupportUserRepository.findById(1L, UserInfoDTO.class);
+        assertNotNull(userInfoDTO);
+        assertEquals(1L, (long) userInfoDTO.getId());
+        assertEquals("Ivo", userInfoDTO.getFirstName());
+        assertEquals("Bobul", userInfoDTO.getLastName());
+
+    }
+
+    @Test
+    public void testFindUserInfosDTOConstructResultAsDtoUsingConstructorExpression() {
+        Page<UserInfoDTO> userInfoDTOS = projectionsSupportUserRepository.findUserInfosDTO(new PageRequest(0, 3));
+        assertEquals(3, userInfoDTOS.getTotalElements());
+        assertEquals(3, userInfoDTOS.getNumberOfElements());
+    }
+
 }

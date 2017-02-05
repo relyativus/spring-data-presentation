@@ -5,7 +5,6 @@
  */
 package co.inventorsoft.spring.data.repositories;
 
-import co.inventorsoft.spring.data.model.OrdersCount;
 import co.inventorsoft.spring.data.model.SimpleUser;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
@@ -21,8 +20,8 @@ public interface NativeQuerySupportRepository extends Repository<SimpleUser, Lon
     @Query(value = "select su.* from simple_users su join orders o on o.user_id = su.id where su.id = :userId", nativeQuery = true)
     List<SimpleUser> findUsersNative(@Param("userId") long id);
 
-    @Query(value = "SELECT su.id as userId, su.first_name as firstName, COUNT(o.id) as ordersCount " +
+    @Query(value = "SELECT su.id, su.first_name, COUNT(o.id)" +
             "FROM simple_users su LEFT JOIN orders o ON o.user_id=su.id GROUP BY su.id",
             nativeQuery = true)
-    List<OrdersCount> findOrdersCountForUsers();
+    <T> List<T> findOrdersCountForUsers(Class<T> resultClass);
 }

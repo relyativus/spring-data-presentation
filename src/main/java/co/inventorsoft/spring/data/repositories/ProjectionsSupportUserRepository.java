@@ -7,6 +7,7 @@ package co.inventorsoft.spring.data.repositories;
 
 import co.inventorsoft.spring.data.model.UserInfo;
 import co.inventorsoft.spring.data.model.SimpleUser;
+import co.inventorsoft.spring.data.model.UserInfoDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -24,5 +25,10 @@ public interface ProjectionsSupportUserRepository extends CrudRepository<SimpleU
     List<UserInfo> findById(@Param("userId") Long id);
 
     @Query("select u.id as id, u.firstName as firstName, u.lastName as lastName from SimpleUser u")
-    Page<UserInfo> findOrderInfos(final Pageable pageable);
+    Page<UserInfo> findUserInfos(final Pageable pageable);
+
+    @Query("select new co.inventorsoft.spring.data.model.UserInfoDTO(u.id, u.firstName, u.lastName) from SimpleUser u")
+    Page<UserInfoDTO> findUserInfosDTO(final Pageable pageable);
+
+    <T> T findById(Long id, Class<T> returnedType);
 }

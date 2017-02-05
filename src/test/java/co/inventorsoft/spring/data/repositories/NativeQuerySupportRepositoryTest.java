@@ -35,7 +35,7 @@ public class NativeQuerySupportRepositoryTest {
 
     @Test
     public void testFindUserNativeWithProjection() {
-        final List<OrdersCount> ordersCountForUsers = nativeQuerySupportRepository.findOrdersCountForUsers();
+        final List<OrdersCount> ordersCountForUsers = nativeQuerySupportRepository.findOrdersCountForUsers(OrdersCount.class);
         assertEquals(3, ordersCountForUsers.size());
     }
 }
