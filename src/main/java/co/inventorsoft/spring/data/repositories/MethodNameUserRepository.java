@@ -14,7 +14,8 @@ import java.util.List;
  *
  * @author anatolii vakaliuk
  */
-public interface MethodNameUserRepository extends CrudRepository<SimpleUser, Long> {
+public interface MethodNameUserRepository extends CrudRepository<SimpleUser, Long>,
+        OptionalSupportRepository<SimpleUser, Long> {
 
     List<SimpleUser> findByFirstName(final String firstName);
 

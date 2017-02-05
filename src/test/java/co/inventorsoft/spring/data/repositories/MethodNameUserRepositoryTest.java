@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -72,6 +73,12 @@ public class MethodNameUserRepositoryTest {
     public void testExistsByLastNameReturnsFalseWhenUserWithFirstNameIsNotFound() {
         boolean exists = methodNameUserRepository.existsByLastName("Bilozir");
         assertFalse(exists);
+    }
+
+    @Test
+    public void testFindByIdReturnsOptional() {
+        Optional<SimpleUser> simpleUser = methodNameUserRepository.findById(1L);
+        assertTrue(simpleUser.isPresent());
     }
 
     private <S, R> List<R> mapTo(List<S> source, Function<S, R> mapper) {
