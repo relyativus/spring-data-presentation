@@ -16,7 +16,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -64,9 +63,6 @@ public class PostProcessResultOrderRepositoryTest {
     public void testFindByIdExecutesAsynchronously() throws ExecutionException, InterruptedException {
         CompletableFuture<java.util.Optional<Order>> completableFuture = postProcessResultOrderRepository.findById(2L);
         assertFalse(completableFuture.isDone());
-        while (!completableFuture.isDone()) {
-            TimeUnit.MILLISECONDS.sleep(10);
-        }
         assertEquals(2L, (long) completableFuture.get().get().getId());
     }
 }
