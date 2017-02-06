@@ -19,7 +19,8 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
     public List<OrdersCountDTO> findOrdersCountGroupedByUser() {
         return jdbcTemplate.query(
                 "SELECT u.id as id, count(o.id) as ordersCount " +
-                        "FROM simple_users u left join orders o on o.user_id=o.id GROUP BY u.id ORDER BY u.id",
+                    "FROM simple_users u left join orders o on o.user_id=u.id " +
+                    "GROUP BY u.id ORDER BY u.id",
                 (resultSet, rowNum) -> new OrdersCountDTO(resultSet.getLong("id"), resultSet.getLong("ordersCount"))
         );
     }
