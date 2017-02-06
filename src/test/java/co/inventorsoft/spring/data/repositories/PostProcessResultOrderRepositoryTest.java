@@ -1,20 +1,22 @@
 package co.inventorsoft.spring.data.repositories;
 
-import co.inventorsoft.spring.data.DAOTest;
 import co.inventorsoft.spring.data.model.Order;
-import co.inventorsoft.spring.data.model.SimpleUser;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import com.google.common.base.Optional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collector;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,7 +27,12 @@ import static org.junit.Assert.assertFalse;
  * @author anatolii vakaliuk
  */
 @RunWith(SpringRunner.class)
-@DAOTest
+@SpringBootTest
+@TestExecutionListeners({
+        DependencyInjectionTestExecutionListener.class,
+        TransactionalTestExecutionListener.class,
+        DbUnitTestExecutionListener.class
+})
 @DatabaseSetup(value = "classpath:dbunit/postProcess/orders.xml")
 @DatabaseTearDown
 public class PostProcessResultOrderRepositoryTest {
@@ -55,8 +62,11 @@ public class PostProcessResultOrderRepositoryTest {
 
     @Test
     public void testFindByIdExecutesAsynchronously() throws ExecutionException, InterruptedException {
-        CompletableFuture<java.util.Optional<Order>> completableFuture = postProcessResultOrderRepository.findById(3L);
+        CompletableFuture<java.util.Optional<Order>> completableFuture = postProcessResultOrderRepository.findById(2L);
         assertFalse(completableFuture.isDone());
-        assertEquals(3L, (long) completableFuture.get().get().getId());
+        while (!completableFuture.isDone()) {
+            TimeUnit.MILLISECONDS.sleep(10);
+        }
+        assertEquals(2L, (long) completableFuture.get().get().getId());
     }
 }
