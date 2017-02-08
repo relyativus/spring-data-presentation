@@ -4,4 +4,6 @@
     <simple_users id="3" first_name="Oksana" last_name="Bilozir"/>
 
     <orders id="1" title="Funny suit" user_id="1"/>
+    <auditable_users/>
+    <auditable_pets/>
 </dataset>

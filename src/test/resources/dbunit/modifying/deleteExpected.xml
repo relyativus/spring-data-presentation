@@ -4,4 +4,7 @@
     <simple_users id="3" first_name="Oksana" last_name="Bilozir"/>
 
     <orders />
+
+    <auditable_users/>
+    <auditable_pets/>
 </dataset>

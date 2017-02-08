@@ -1,6 +1,9 @@
 <dataset>
-    <simple_users id="1" first_name="Ivo" last_name="Bobul"></simple_users>
-    <simple_users id="2" first_name="Stephan" last_name="Giga"></simple_users>
+    <simple_users id="1" first_name="Ivo" last_name="Bobul"/>
+    <simple_users id="2" first_name="Stephan" last_name="Giga"/>
 
-    <orders id="1" title="Funny costume" user_id="2"></orders>
+    <orders id="1" title="Funny costume" user_id="2"/>
+
+    <auditable_users/>
+    <auditable_pets/>
 </dataset>

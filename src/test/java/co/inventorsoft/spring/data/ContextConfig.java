@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
@@ -26,6 +27,7 @@ import java.util.concurrent.Executors;
         repositoryBaseClass = OptionalSupportJpaRepository.class,
         repositoryFactoryBeanClass = QueryExecutionTimeSupportRepositoryFactoryBean.class
 )
+@EnableJpaAuditing(auditorAwareRef = "simpleUserAuditorAware")
 @EntityScan(basePackages = "co.inventorsoft.spring.data.model")
 @EnableAsync
 public class ContextConfig extends AsyncConfigurerSupport {

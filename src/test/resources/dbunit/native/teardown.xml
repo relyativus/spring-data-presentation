@@ -1,4 +1,7 @@
 <dataset>
     <simple_users/>
     <orders/>
+
+    <auditable_users/>
+    <auditable_pets/>
 </dataset>

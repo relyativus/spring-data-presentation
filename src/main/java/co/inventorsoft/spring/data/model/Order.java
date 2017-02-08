@@ -28,5 +28,8 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    public SimpleUser owner;
+    private SimpleUser owner;
+
+
+
 }
