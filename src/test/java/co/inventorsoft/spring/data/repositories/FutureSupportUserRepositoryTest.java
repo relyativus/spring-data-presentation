@@ -7,12 +7,17 @@ package co.inventorsoft.spring.data.repositories;
 
 import co.inventorsoft.spring.data.DAOTest;
 import co.inventorsoft.spring.data.model.SimpleUser;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -27,7 +32,12 @@ import static org.junit.Assert.assertFalse;
  * @author anatolii
  */
 @RunWith(SpringRunner.class)
-@DAOTest
+@SpringBootTest
+@TestExecutionListeners({
+        DependencyInjectionTestExecutionListener.class,
+        TransactionalTestExecutionListener.class,
+        DbUnitTestExecutionListener.class
+})
 @DatabaseSetup(value = "classpath:dbunit/dynamic/users.xml")
 @DatabaseTearDown
 public class FutureSupportUserRepositoryTest {

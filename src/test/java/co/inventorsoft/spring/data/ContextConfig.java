@@ -1,16 +1,13 @@
 package co.inventorsoft.spring.data;
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.scheduling.annotation.AbstractAsyncConfiguration;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.test.context.TestExecutionListeners;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -38,4 +35,5 @@ public class ContextConfig extends AsyncConfigurerSupport {
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return new SimpleAsyncUncaughtExceptionHandler();
     }
+
 }

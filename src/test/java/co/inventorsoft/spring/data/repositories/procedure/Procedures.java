@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.inventorsoft.spring.data.model;
+package co.inventorsoft.spring.data.repositories.procedure;
 
 /**
  * @author anatolii
  */
-public interface OrdersCount {
+public class Procedures {
 
-    Long getOrdersCount();
-
-    Long getId();
+    public static void binaryAdd(Long first, Long second, Long[] result) {
+        result[0] = first + second;
+    }
 }
