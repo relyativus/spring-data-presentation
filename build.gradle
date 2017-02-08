@@ -1,6 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '1.5.1.RELEASE'
-//    id "com.ewerk.gradle.plugins.querydsl" version "1.0.7"
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.7"
 }
 
 group 'co.inventorsoft'
@@ -38,7 +38,7 @@ dependencies {
 
 }
 
-//querydsl {
-//    jpa = true
-////    querydslSourcesDir =  'src/main/'
-//}
+querydsl {
+    jpa = true
+    querydslSourcesDir =  'src/main/java'
+}

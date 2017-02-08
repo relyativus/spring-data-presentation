@@ -5,7 +5,6 @@
  */
 package co.inventorsoft.spring.data.repositories;
 
-import co.inventorsoft.spring.data.DAOTest;
 import co.inventorsoft.spring.data.model.SimpleUser;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -22,10 +21,8 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 /**
