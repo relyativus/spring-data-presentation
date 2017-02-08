@@ -6,11 +6,11 @@
 package co.inventorsoft.spring.data.repositories;
 
 import co.inventorsoft.spring.data.model.SimpleUser;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
-import org.springframework.data.repository.Repository;
 
 /**
  * @author anatolii
  */
-public interface QueryDslUserRepository extends Repository<SimpleUser, Long>, QueryDslPredicateExecutor<SimpleUser> {
+public interface QueryDslUserRepository extends JpaRepository<SimpleUser, Long>, QueryDslPredicateExecutor<SimpleUser> {
 }

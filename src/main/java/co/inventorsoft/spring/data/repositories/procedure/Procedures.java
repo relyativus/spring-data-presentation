@@ -10,7 +10,7 @@ package co.inventorsoft.spring.data.repositories.procedure;
  */
 public class Procedures {
 
-    public static void binaryAdd(Long first, Long second, Long result) {
-        result = first + second;
+    public static void binaryAdd(Long first, Long second, Long[] result) {
+        result[0] = first + second;
     }
 }

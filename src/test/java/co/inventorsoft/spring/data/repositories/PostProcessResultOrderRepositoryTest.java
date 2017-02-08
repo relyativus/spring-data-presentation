@@ -61,8 +61,8 @@ public class PostProcessResultOrderRepositoryTest {
 
     @Test
     public void testFindByIdExecutesAsynchronously() throws ExecutionException, InterruptedException {
-        CompletableFuture<java.util.Optional<Order>> completableFuture = postProcessResultOrderRepository.findById(2L);
+        CompletableFuture<Order> completableFuture = postProcessResultOrderRepository.findByTitle("Funny Costume");
         assertFalse(completableFuture.isDone());
-        assertEquals(2L, (long) completableFuture.get().get().getId());
+        assertEquals(1L, (long) completableFuture.get().getId());
     }
 }

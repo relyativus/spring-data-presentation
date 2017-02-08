@@ -24,5 +24,5 @@ public interface PostProcessResultOrderRepository extends Repository<Order, Long
     java.util.Optional<Order> findJavaOptional(@Param("orderId") Long id);
 
     @Async
-    CompletableFuture<java.util.Optional<Order>> findById(Long id);
+    CompletableFuture<Order> findByTitle(String title);
 }
