@@ -33,7 +33,7 @@ public class UsersFilterSpecificationBuilder {
         return (Root<SimpleUser> root,CriteriaQuery<?> query, CriteriaBuilder cb) -> {
             List<Predicate> predicates = new ArrayList<>();
             if (nonNull(firstName)) {
-                predicates.add(cb.equal(root.<String>get("name"), cb.literal(firstName)));
+                predicates.add(cb.equal(root.<String>get("firstName"), cb.literal(firstName)));
             }
 
             if (nonNull(lastName)) {
