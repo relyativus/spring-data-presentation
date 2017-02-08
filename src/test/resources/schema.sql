@@ -1,0 +1,1 @@
+CREATE PROCEDURE binaryAdd(IN arg1 BIGINT, IN arg2 BIGINT, OUT RESULT BIGINT) PARAMETER STYLE JAVA LANGUAGE JAVA EXTERNAL NAME 'co.inventorsoft.spring.data.repositories.procedure.Procedures.binaryAdd'
