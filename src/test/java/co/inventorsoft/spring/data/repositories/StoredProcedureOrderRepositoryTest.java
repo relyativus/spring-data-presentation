@@ -25,10 +25,8 @@ public class StoredProcedureOrderRepositoryTest {
     @Autowired
     private StoredProcedureOrderRepository storedProcedureOrderRepository;
 
-
     @Test
     public void testBinaryAdd() {
-
         final Long[] sum = storedProcedureOrderRepository.binaryAdd(2L, 2L);
         assertEquals(4L, (long) sum[0]);
     }

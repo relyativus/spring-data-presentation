@@ -35,21 +35,10 @@ import java.util.concurrent.Executors;
 )
 @EntityScan(basePackages = "co.inventorsoft.spring.data.model")
 @EnableAsync
-public class ContextConfig extends AsyncConfigurerSupport {
+public class ContextConfig {
 
     public static void main(String[] args) {
         SpringApplication.run(ContextConfig.class, args);
-    }
-
-
-    @Override
-    public Executor getAsyncExecutor() {
-        return Executors.newFixedThreadPool(2);
-    }
-
-    @Override
-    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        return new SimpleAsyncUncaughtExceptionHandler();
     }
 
     @Bean
@@ -57,6 +46,29 @@ public class ContextConfig extends AsyncConfigurerSupport {
         return new JdbcTemplate(dataSource);
     }
 
+    /**
+     * Configuration for async support
+     */
+    @Profile("async")
+    @EnableAsync
+    @Configuration
+    static class AsyncConfig extends AsyncConfigurerSupport {
+
+        @Override
+        public Executor getAsyncExecutor() {
+            return Executors.newFixedThreadPool(2);
+        }
+
+        @Override
+        public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+            return new SimpleAsyncUncaughtExceptionHandler();
+        }
+
+    }
+
+    /**
+     * configuration for stored procedure
+     */
     @Profile("storedProcedure")
     @Configuration
     static class ProcedureInitializer {
@@ -72,6 +84,9 @@ public class ContextConfig extends AsyncConfigurerSupport {
 
     }
 
+    /**
+     * Configuration to support auditing
+     */
     @Profile("auditing")
     @EnableJpaAuditing(auditorAwareRef = "simpleUserAuditorAware")
     @Configuration
