@@ -1,0 +1,6 @@
+<dataset>
+    <simple_users/>
+    <orders/>
+    <auditable_users id="1" name="Kuklachev"  />
+    <auditable_pets id="1" type="Cat" name="Barsik" />
+</dataset>
